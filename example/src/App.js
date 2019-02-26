@@ -1,13 +1,38 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'react-items-slider'
+import ReactItemSlider from 'react-items-slider'
 
 export default class App extends Component {
+
   render () {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
+        <ReactItemSlider
+          small={true} 
+        >
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+            <p>asdasd</p>
+        </ReactItemSlider>
     )
   }
 }
