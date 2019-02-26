@@ -66,12 +66,21 @@ class SliderArrows extends Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, arrowSize } = this.props
 
     const showLeft = this.state.left ? styles.sliderArrowsActive : styles.sliderArrowsInactive
     const showRight = this.state.right ? styles.sliderArrowsActive : styles.sliderArrowsInactive
 
-    const arrowSize = styles.sliderArrowsArrowSmall
+    let size
+    if (arrowSize === 'small') {
+      size = styles.sliderArrowsArrowSmall
+    } else if (arrowSize === 'medium') {
+      size = styles.sliderArrowsArrowMedium
+    } else if (arrowSize === 'large') {
+      size = styles.sliderArrowsArrowLarge
+    } else {
+      size = styles.sliderArrowsArrowSmall
+    }
 
     return (
       <div className={styles.sliderArrowsContainer}>
@@ -79,8 +88,8 @@ class SliderArrows extends Component {
         <button
           aria-label='left slider button'
           onClick={() => this.handleScroll('left', this.categorySliderRef)}
-          className={[styles.sliderArrowsArrow, arrowSize, styles.sliderArrowsArrowLeft].join(' ')}>
-          <div className={[styles.sliderArrowImg, styles.left, showLeft].join(' ')}>
+          className={[styles.sliderArrowsArrow, size, styles.sliderArrowsArrowLeft].join(' ')}>
+          <div className={showLeft}>
             <LeftArrow />
           </div>
         </button>
@@ -95,8 +104,8 @@ class SliderArrows extends Component {
         <button
           aria-label='right slider button'
           onClick={() => this.handleScroll('right', this.categorySliderRef)}
-          className={[styles.sliderArrowsArrow, arrowSize, styles.sliderArrowsArrowRight].join(' ')}>
-          <div className={[styles.sliderArrowImg, styles.right, showRight].join(' ')}>
+          className={[styles.sliderArrowsArrow, size, styles.sliderArrowsArrowRight].join(' ')}>
+          <div className={showRight}>
             <RightArrow />
           </div>
         </button>
@@ -109,10 +118,11 @@ class SliderArrows extends Component {
 export default SliderArrows
 
 SliderArrows.defaultProps = {
-  size: 'small'
+  arrowSize: 'small'
 }
 
 SliderArrows.propTypes = {
+  arrowSize: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
