@@ -1,10 +1,13 @@
-import React, { Component, Fragment } from 'react'
-//import PropTypes from 'prop-types'
-
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styles from './styles.css'
 
-function Arrow() {
-  return <div dangerouslySetInnerHTML={{__html: "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 306 306' style='enable-background:new 0 0 306 306;' xml:space='preserve' class='><g transform='matrix(-1 1.22465e-16 -1.22465e-16 -1 306 306)'><g><g id='chevron-right'><polygon points='94.35,0 58.65,35.7 175.95,153 58.65,270.3 94.35,306 247.35,153   ' data-original='#000000' class='active-path' /></g></g></g> </svg>"}} />
+const RightArrow = () => {
+  return <div dangerouslySetInnerHTML={{__html: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129 129' xmlns:xlink='http://www.w3.org/1999/xlink' enable-background='new 0 0 129 129'><g><path d='m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z'/></g></svg>"}} />
+}
+
+const LeftArrow = () => {
+  return <div dangerouslySetInnerHTML={{__html: "<svg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 477.175 477.175' style='enable-background:new 0 0 477.175 477.175;' xml:space='preserve'><g><path d='M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z'/></g></svg>"}} />
 }
 
 class SliderArrows extends Component {
@@ -26,9 +29,10 @@ class SliderArrows extends Component {
   }
 
   handleScroll = (direction, sliderRef) => {
-    let distanceToScroll = (40)
-    let scrollL = sliderRef.current.scrollLeft
+    const childLength = this.categorySliderRef.current.children[0].offsetWidth
+    const distanceToScroll = (childLength)
 
+    const scrollL = sliderRef.current.scrollLeft
     this.setState({scrollLeftWidth: scrollL})
 
     if (direction === 'right') {
@@ -40,12 +44,12 @@ class SliderArrows extends Component {
 
   handleScrolled = (sliderRef) => {
     setTimeout(() => {
-      let offsetW = sliderRef.current.offsetWidth
-      let scrollL = sliderRef.current.scrollLeft
-      let clientW = sliderRef.current.clientWidth
-      let scrollRight = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW))
-      let scrollRightOne = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW) + 1)
-      let scrollRightTwo = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW) + 2)
+      const offsetW = sliderRef.current.offsetWidth
+      const scrollL = sliderRef.current.scrollLeft
+      const clientW = sliderRef.current.clientWidth
+      const scrollRight = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW))
+      const scrollRightOne = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW) + 1)
+      const scrollRightTwo = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW) + 2)
 
       if (offsetW + scrollL === offsetW) {
         this.setState({left: false})
@@ -62,41 +66,55 @@ class SliderArrows extends Component {
   }
 
   render() {
-    const {productCount, children} = this.props
-    const showArrows = productCount >= 4 || !productCount 
-    const arrowSize = styles.sliderArrowsArrowSmall
-    const arrowImgSize = styles.sliderArrowsImgSmall
+    const { children } = this.props
+
     const showLeft = this.state.left ? styles.sliderArrowsActive : styles.sliderArrowsInactive
     const showRight = this.state.right ? styles.sliderArrowsActive : styles.sliderArrowsInactive
 
+    const arrowSize = styles.sliderArrowsArrowSmall
+
     return (
       <div className={styles.sliderArrowsContainer}>
-        {
-          showArrows &&
-          <button
-            aria-label='left slider button'
-            onClick={() => this.handleScroll('left', this.categorySliderRef)}
-            className={[styles.sliderArrowsArrow, arrowSize, showLeft, styles.sliderArrowsArrowLeft].join(' ')}>
-            <div className={styles.left}>
-              <Arrow  />
-            </div>
-          </button>
-        }
-        <div ref={this.categorySliderRef} className={styles.sliderArrowsChildren}>
+
+        <button
+          aria-label='left slider button'
+          onClick={() => this.handleScroll('left', this.categorySliderRef)}
+          className={[styles.sliderArrowsArrow, arrowSize, styles.sliderArrowsArrowLeft].join(' ')}>
+          <div className={[styles.sliderArrowImg, styles.left, showLeft].join(' ')}>
+            <LeftArrow />
+          </div>
+        </button>
+
+        <div
+          ref={this.categorySliderRef}
+          className={styles.sliderArrowsChildren}
+        >
           {children}
         </div>
-        {
-          showArrows &&
-          <button
-            aria-label='right slider button'
-            onClick={() => this.handleScroll('right', this.categorySliderRef)}
-            className={[styles.sliderArrowsArrow, arrowSize, showRight, styles.sliderArrowsArrowRight].join(' ')}>
-            <Arrow />
-          </button>
-        }
+
+        <button
+          aria-label='right slider button'
+          onClick={() => this.handleScroll('right', this.categorySliderRef)}
+          className={[styles.sliderArrowsArrow, arrowSize, styles.sliderArrowsArrowRight].join(' ')}>
+          <div className={[styles.sliderArrowImg, styles.right, showRight].join(' ')}>
+            <RightArrow />
+          </div>
+        </button>
+
       </div>
     )
   }
 }
 
 export default SliderArrows
+
+SliderArrows.defaultProps = {
+  size: 'small'
+}
+
+SliderArrows.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+}
