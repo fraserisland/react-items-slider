@@ -82,6 +82,12 @@ class SliderArrows extends Component {
       size = styles.sliderArrowsArrowSmall
     }
 
+    const childrenWithWrapperDiv = React.Children.map(this.props.children, child => {
+      return (
+        <div className={styles.snap}>{child}</div>
+      )
+    })
+
     return (
       <div className={styles.sliderArrowsContainer}>
 
@@ -98,7 +104,7 @@ class SliderArrows extends Component {
           ref={this.categorySliderRef}
           className={styles.sliderArrowsChildren}
         >
-          {children}
+          {childrenWithWrapperDiv}
         </div>
 
         <button

@@ -1,5 +1,9 @@
 /* add css styles here (optional) */
 
+.snap {
+  scroll-snap-align: start;
+}
+
 .sliderArrowsContainer {
   position: relative;
   padding: 4rem;
@@ -13,6 +17,7 @@
   overflow: auto;
   justify-content: center;
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 .sliderArrowsArrow {
