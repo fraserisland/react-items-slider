@@ -29,3 +29,4 @@ class Example extends Component {
 ## License
 
 MIT © [fraserisland](https://github.com/fraserisland)
+# react-items-slider
