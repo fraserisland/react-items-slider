@@ -6,32 +6,16 @@ export default class App extends Component {
 
   render () {
     return (
-        <ReactItemSlider
-          small={true} 
-        >
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
-            <p>asdasd</p>
+        <ReactItemSlider>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
+          <p>1asdasdasdasdasd</p>
         </ReactItemSlider>
     )
   }

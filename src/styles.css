@@ -2,15 +2,23 @@
 
 .sliderArrowsContainer {
   position: relative;
+  padding: 4rem;
+}
+
+.sliderArrowsChildren {
+  position: relative;
+  width: 100%;
+  background-color: green;
+  display: flex;
+  overflow: auto;
+  justify-content: center;
+  scroll-behavior: smooth;
 }
 
 .sliderArrowsArrow {
   position: absolute;
   padding: 0;
   z-index: 999;
-  border: 2px solid #9b6925;
-  border-radius: 100%;
-  display: block;
   justify-content: center;
   align-content: center;
   cursor: pointer;
@@ -18,45 +26,39 @@
   top: 0;
   bottom: 0;
   margin: auto;
-
-  @media (min-width: 780px) {
-    display: flex;
-  }
-}
-
-.sliderArrowsChildren {
-  padding: 1rem 2rem;
-  scroll-behavior: smooth;
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  overflow: auto;
-  align-items: center;
-  justify-content: center;
 }
 
 .sliderArrowsArrowSmall {
-  width: 2.5rem;
-  height: 2.5rem;
-  padding-top: 5px;
+  width: 1.5rem;
+  height: 1.5rem;
   border: 0;
   background: #fff;
 }
 
-.sliderArrowsArrowSmall.sliderArrowsArrowLeft {
+.sliderArrowsArrowMedium {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  background: #fff;
+}
+
+.sliderArrowsArrowLarge {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 0;
+  background: #fff;
+}
+
+.sliderArrowsChildren::-webkit-scrollbar {
+  display: none;
+}
+
+.sliderArrowsArrowLeft {
   left: 0;
 }
 
-.sliderArrowsArrowSmall.sliderArrowsArrowRight {
+.sliderArrowsArrowRight {
   right: 0;
-}
-
-.sliderArrowsArrow-img-left {
-  margin-right: .1rem;
-}
-
-.sliderArrowsArrow-img-right {
-  margin-left: .1rem;
 }
 
 .sliderArrowsActive {
