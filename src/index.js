@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import img from './img/left-arrow.svg'
 //import PropTypes from 'prop-types'
 
 import styles from './styles.css'
 
 function Arrow() {
-  return <div dangerouslySetInnerHTML={{__html:"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 306 306' style='enable-background:new 0 0 306 306;' xml:space='preserve' class='><g transform='matrix(-1 1.22465e-16 -1.22465e-16 -1 306 306)'><g><g id='chevron-right'><polygon points='94.35,0 58.65,35.7 175.95,153 58.65,270.3 94.35,306 247.35,153   ' data-original='#000000' class='active-path' /></g></g></g> </svg>"}} />
+  return <div dangerouslySetInnerHTML={{__html: "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 306 306' style='enable-background:new 0 0 306 306;' xml:space='preserve' class='><g transform='matrix(-1 1.22465e-16 -1.22465e-16 -1 306 306)'><g><g id='chevron-right'><polygon points='94.35,0 58.65,35.7 175.95,153 58.65,270.3 94.35,306 247.35,153   ' data-original='#000000' class='active-path' /></g></g></g> </svg>"}} />
 }
 
 class SliderArrows extends Component {
@@ -26,7 +25,7 @@ class SliderArrows extends Component {
     }
   }
 
-  handleScroll = (direction, sliderRef) => { 
+  handleScroll = (direction, sliderRef) => {
     let distanceToScroll = (40)
     let scrollL = sliderRef.current.scrollLeft
 
