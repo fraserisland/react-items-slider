@@ -66,10 +66,12 @@ class SliderArrows extends Component {
   }
 
   render() {
-    const { children, arrowSize } = this.props
+    const { children, arrowSize, width } = this.props
 
     const showLeft = this.state.left ? styles.sliderArrowsActive : styles.sliderArrowsInactive
     const showRight = this.state.right ? styles.sliderArrowsActive : styles.sliderArrowsInactive
+
+    let itemWdith = width === 'full' ? styles.full : ''
 
     let size
     if (arrowSize === 'small') {
@@ -82,9 +84,9 @@ class SliderArrows extends Component {
       size = styles.sliderArrowsArrowSmall
     }
 
-    const childrenWithWrapperDiv = React.Children.map(this.props.children, child => {
+    const childrenWithWrapperDiv = React.Children.map(children, child => {
       return (
-        <div className={styles.snap}>{child}</div>
+        <div className={[itemWdith, styles.snap].join(' ')}>{child}</div>
       )
     })
 
