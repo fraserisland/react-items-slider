@@ -6,7 +6,8 @@ export default class App extends Component {
 
   render () {
     return (
-        <ReactItemSlider arrowSize="medium">
+      <div style={{maxWidth: "600px"}}>
+        <ReactItemSlider arrowSize="small">
           <div>1asdasdasdasdasd</div>
           <div>1asdasdasdasdasd</div>
           <div>1asdasdasdasdasd</div>
@@ -17,6 +18,7 @@ export default class App extends Component {
           <div>1asdasdasdasdasd</div>
           <div>1asdasdasdasdasd</div>
         </ReactItemSlider>
+      </div>
     )
   }
 }

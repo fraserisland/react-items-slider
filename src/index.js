@@ -27,31 +27,32 @@ class SliderArrows extends Component {
   }
 
   handleScroll = (direction) => {
-    let sliderRef = this.categorySliderRef
+    let sliderRef = this.categorySliderRef.current
 
-    const childLength = sliderRef.current.children[0].offsetWidth
+    const childLength = sliderRef.children[0].offsetWidth
     const distanceToScroll = (childLength)
 
     if (this.state.right === false && direction === 'right') {
-      sliderRef.current.scrollLeft = 0
+      sliderRef.scrollLeft = 0
     } else if (this.state.left === false && direction === 'left') {
-      sliderRef.current.scrollLeft = sliderRef.current.scrollWidth
+      sliderRef.scrollLeft = sliderRef.scrollWidth
     }
 
     if (direction === 'right') {
-      sliderRef.current.scrollLeft += distanceToScroll
+      sliderRef.scrollLeft += distanceToScroll
     } else if (direction === 'left') {
-      sliderRef.current.scrollLeft -= distanceToScroll
+      sliderRef.scrollLeft -= distanceToScroll
     }
   }
 
   handleScrolled = () => {
     console.log('scrolled')
-    let sliderRef = this.categorySliderRef
-    const offsetW = sliderRef.current.offsetWidth
-    const scrollL = sliderRef.current.scrollLeft
-    const clientW = sliderRef.current.clientWidth
-    const scrollR = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW))
+    let sliderRef = this.categorySliderRef.current
+
+    const offsetW = sliderRef.offsetWidth
+    const clientW = sliderRef.clientWidth
+    const scrollL = sliderRef.scrollLeft
+    const scrollR = Math.floor(sliderRef.scrollWidth - (scrollL + clientW))
 
     if (this.between((offsetW + scrollL), offsetW - 5, offsetW + 5)) {
       this.setState({left: false})
@@ -67,12 +68,10 @@ class SliderArrows extends Component {
   }
 
   render() {
-    const { children, arrowSize, width } = this.props
+    const { children, arrowSize } = this.props
 
     const showLeft = this.state.left ? styles.sliderArrowsActive : styles.sliderArrowsInactive
     const showRight = this.state.right ? styles.sliderArrowsActive : styles.sliderArrowsInactive
-
-    let itemWdith = width === 'full' ? styles.full : ''
 
     let size
     if (arrowSize === 'small') {
@@ -87,12 +86,12 @@ class SliderArrows extends Component {
 
     const childrenWithWrapperDiv = React.Children.map(children, child => {
       return (
-        <div className={[itemWdith, styles.snap].join(' ')}>{child}</div>
+        <div className={[styles.snap].join(' ')}>{child}</div>
       )
     })
 
     return (
-      <div className={styles.sliderArrowsContainer}>
+      <div className={styles.sliderContainer}>
 
         <button
           aria-label='left slider button'
@@ -104,6 +103,8 @@ class SliderArrows extends Component {
         </button>
 
         <div
+          ref={this.categorySliderRef}
+          className={styles.sliderArrowsChildren}
           onScroll={() => {
             clearTimeout(this.state.timeout)
             this.setState({
@@ -112,8 +113,6 @@ class SliderArrows extends Component {
               }, 100)
             })
           }}
-          ref={this.categorySliderRef}
-          className={styles.sliderArrowsChildren}
         >
           {childrenWithWrapperDiv}
         </div>

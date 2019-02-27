@@ -1,8 +1,7 @@
 /* add css styles here (optional) */
 
 .snap {
-  display: block;
-  flex-basis: 200px !important;
+  flex-basis: 200px;
   scroll-snap-align: start;
   color: pink;
   flex-grow: 0;
@@ -10,7 +9,7 @@
   text-align: center;
 }
 
-.sliderArrowsContainer {
+.sliderContainer {
   position: relative;
   padding: 4rem;
 }
@@ -21,7 +20,7 @@
   background-color: green;
   display: flex;
   overflow: auto;
-  width: 400px;
+  width: 100%;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
 }
