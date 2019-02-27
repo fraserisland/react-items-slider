@@ -1,5 +1,15 @@
 /* add css styles here (optional) */
 
+.snap {
+  display: block;
+  flex-basis: 200px !important;
+  scroll-snap-align: start;
+  color: pink;
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-align: center;
+}
+
 .sliderArrowsContainer {
   position: relative;
   padding: 4rem;
@@ -7,12 +17,13 @@
 
 .sliderArrowsChildren {
   position: relative;
-  width: 100%;
+  margin: 0 auto;
   background-color: green;
   display: flex;
   overflow: auto;
-  justify-content: center;
+  width: 400px;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
 .sliderArrowsArrow {
@@ -32,21 +43,21 @@
   width: 1.5rem;
   height: 1.5rem;
   border: 0;
-  background: #fff;
+  background: pink;
 }
 
 .sliderArrowsArrowMedium {
   width: 2.5rem;
   height: 2.5rem;
   border: 0;
-  background: #fff;
+  background: pink;
 }
 
 .sliderArrowsArrowLarge {
   width: 3.5rem;
   height: 3.5rem;
   border: 0;
-  background: #fff;
+  background: pink;
 }
 
 .sliderArrowsChildren::-webkit-scrollbar {

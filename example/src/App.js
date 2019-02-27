@@ -7,15 +7,15 @@ export default class App extends Component {
   render () {
     return (
         <ReactItemSlider>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
-          <p>1asdasdasdasdasd</p>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
+          <div>1asdasdasdasdasd</div>
         </ReactItemSlider>
     )
   }
