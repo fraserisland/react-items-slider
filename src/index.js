@@ -96,10 +96,8 @@ class SliderArrows extends Component {
         <button
           aria-label='left slider button'
           onClick={() => this.handleScroll('left')}
-          className={[styles.sliderArrowsArrow, size, styles.sliderArrowsArrowLeft].join(' ')}>
-          <div className={showLeft}>
-            <LeftArrow />
-          </div>
+          className={[styles.center, showLeft, styles.sliderArrowsArrow, size, styles.sliderArrowsArrowLeft].join(' ')}>
+          <LeftArrow />
         </button>
 
         <div
@@ -120,10 +118,8 @@ class SliderArrows extends Component {
         <button
           aria-label='right slider button'
           onClick={() => this.handleScroll('right')}
-          className={[styles.sliderArrowsArrow, size, styles.sliderArrowsArrowRight].join(' ')}>
-          <div className={showRight}>
-            <RightArrow />
-          </div>
+          className={[styles.center, showRight, styles.sliderArrowsArrow, size, styles.sliderArrowsArrowRight].join(' ')}>
+          <RightArrow />
         </button>
 
       </div>

@@ -11,7 +11,16 @@
 
 .sliderContainer {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 4rem;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
 }
 
 .sliderArrowsChildren {
@@ -26,15 +35,12 @@
 }
 
 .sliderArrowsArrow {
-  position: absolute;
   padding: 0;
   z-index: 999;
   justify-content: center;
   align-content: center;
   cursor: pointer;
   transition: opacity 250ms;
-  top: 0;
-  bottom: 0;
   margin: auto;
 }
 
@@ -61,11 +67,11 @@
 }
 
 .sliderArrowsArrowLeft {
-  left: 0;
+  left: 5px;
 }
 
 .sliderArrowsArrowRight {
-  right: 0;
+  right: 5px;
 }
 
 .sliderArrowsActive {
