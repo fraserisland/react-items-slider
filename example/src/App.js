@@ -6,7 +6,7 @@ export default class App extends Component {
 
   render () {
     return (
-        <ReactItemSlider>
+        <ReactItemSlider arrowSize="medium">
           <div>1asdasdasdasdasd</div>
           <div>1asdasdasdasdasd</div>
           <div>1asdasdasdasdasd</div>
