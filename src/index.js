@@ -16,24 +16,27 @@ class SliderArrows extends Component {
     this.state = {
       left: false,
       right: true,
-      scrollLeftWidth: null
+      timeout: null
     }
 
     this.categorySliderRef = React.createRef()
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.scrollLeftWidth !== this.state.scrollLeftWidth) {
-      this.handleScrolled(this.categorySliderRef)
-    }
+  between = (x, min, max) => {
+    return x >= min && x <= max
   }
 
-  handleScroll = (direction, sliderRef) => {
-    const childLength = this.categorySliderRef.current.children[0].offsetWidth
+  handleScroll = (direction) => {
+    let sliderRef = this.categorySliderRef
+
+    const childLength = sliderRef.current.children[0].offsetWidth
     const distanceToScroll = (childLength)
 
-    const scrollL = sliderRef.current.scrollLeft
-    this.setState({scrollLeftWidth: scrollL})
+    if (this.state.right === false && direction === 'right') {
+      sliderRef.current.scrollLeft = 0
+    } else if (this.state.left === false && direction === 'left') {
+      sliderRef.current.scrollLeft = sliderRef.current.scrollWidth
+    }
 
     if (direction === 'right') {
       sliderRef.current.scrollLeft += distanceToScroll
@@ -42,27 +45,25 @@ class SliderArrows extends Component {
     }
   }
 
-  handleScrolled = (sliderRef) => {
-    setTimeout(() => {
-      const offsetW = sliderRef.current.offsetWidth
-      const scrollL = sliderRef.current.scrollLeft
-      const clientW = sliderRef.current.clientWidth
-      const scrollRight = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW))
-      const scrollRightOne = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW) + 1)
-      const scrollRightTwo = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW) + 2)
+  handleScrolled = () => {
+    console.log('scrolled')
+    let sliderRef = this.categorySliderRef
+    const offsetW = sliderRef.current.offsetWidth
+    const scrollL = sliderRef.current.scrollLeft
+    const clientW = sliderRef.current.clientWidth
+    const scrollR = Math.floor(sliderRef.current.scrollWidth - (scrollL + clientW))
 
-      if (offsetW + scrollL === offsetW) {
-        this.setState({left: false})
-      } else {
-        this.setState({left: true})
-      }
+    if (this.between((offsetW + scrollL), offsetW - 5, offsetW + 5)) {
+      this.setState({left: false})
+    } else {
+      this.setState({left: true})
+    }
 
-      if (offsetW + scrollRight === offsetW || offsetW + scrollRightOne === offsetW || offsetW + scrollRightTwo === offsetW) {
-        this.setState({right: false})
-      } else {
-        this.setState({right: true})
-      }
-    }, 250)
+    if (this.between((offsetW + scrollR), offsetW - 5, offsetW + 5)) {
+      this.setState({right: false})
+    } else {
+      this.setState({right: true})
+    }
   }
 
   render() {
@@ -95,7 +96,7 @@ class SliderArrows extends Component {
 
         <button
           aria-label='left slider button'
-          onClick={() => this.handleScroll('left', this.categorySliderRef)}
+          onClick={() => this.handleScroll('left')}
           className={[styles.sliderArrowsArrow, size, styles.sliderArrowsArrowLeft].join(' ')}>
           <div className={showLeft}>
             <LeftArrow />
@@ -103,6 +104,14 @@ class SliderArrows extends Component {
         </button>
 
         <div
+          onScroll={() => {
+            clearTimeout(this.state.timeout)
+            this.setState({
+              timeout: setTimeout(() => {
+                this.handleScrolled()
+              }, 100)
+            })
+          }}
           ref={this.categorySliderRef}
           className={styles.sliderArrowsChildren}
         >
@@ -111,7 +120,7 @@ class SliderArrows extends Component {
 
         <button
           aria-label='right slider button'
-          onClick={() => this.handleScroll('right', this.categorySliderRef)}
+          onClick={() => this.handleScroll('right')}
           className={[styles.sliderArrowsArrow, size, styles.sliderArrowsArrowRight].join(' ')}>
           <div className={showRight}>
             <RightArrow />
