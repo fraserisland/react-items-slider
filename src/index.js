@@ -16,10 +16,15 @@ class SliderArrows extends Component {
     this.state = {
       left: false,
       right: true,
-      timeout: null
+      timeout: null,
+      childLength: null
     }
 
     this.categorySliderRef = React.createRef()
+  }
+
+  componentDidMount() {
+    this.setState({ childLength: this.categorySliderRef.current.children[0].offsetWidth })
   }
 
   between = (x, min, max) => {
@@ -28,8 +33,7 @@ class SliderArrows extends Component {
 
   handleScroll = (direction) => {
     let sliderRef = this.categorySliderRef
-
-    const childLength = sliderRef.current.children[0].offsetWidth
+    let childLength = this.categorySliderRef.current.children[0].offsetWidth
     const distanceToScroll = (childLength)
 
     if (this.state.right === false && direction === 'right') {
@@ -46,7 +50,6 @@ class SliderArrows extends Component {
   }
 
   handleScrolled = () => {
-    console.log('scrolled')
     let sliderRef = this.categorySliderRef
     const offsetW = sliderRef.current.offsetWidth
     const scrollL = sliderRef.current.scrollLeft
@@ -67,12 +70,10 @@ class SliderArrows extends Component {
   }
 
   render() {
-    const { children, arrowSize, width } = this.props
+    const { children, arrowSize, productsInView } = this.props
 
     const showLeft = this.state.left ? styles.sliderArrowsActive : styles.sliderArrowsInactive
     const showRight = this.state.right ? styles.sliderArrowsActive : styles.sliderArrowsInactive
-
-    let itemWdith = width === 'full' ? styles.full : ''
 
     let size
     if (arrowSize === 'small') {
@@ -85,9 +86,16 @@ class SliderArrows extends Component {
       size = styles.sliderArrowsArrowSmall
     }
 
+    let width
+    if (typeof productsInView === 'string') {
+      width = '100%'
+    } else if (typeof productsInView === 'number') {
+      width = `${this.state.childLength * productsInView}px`
+    }
+
     const childrenWithWrapperDiv = React.Children.map(children, child => {
       return (
-        <div className={[itemWdith, styles.snap].join(' ')}>{child}</div>
+        <div className={styles.snap}>{child}</div>
       )
     })
 
@@ -104,6 +112,7 @@ class SliderArrows extends Component {
         </button>
 
         <div
+          style={{width: width}}
           onScroll={() => {
             clearTimeout(this.state.timeout)
             this.setState({
@@ -135,11 +144,16 @@ class SliderArrows extends Component {
 export default SliderArrows
 
 SliderArrows.defaultProps = {
-  arrowSize: 'small'
+  arrowSize: 'small',
+  productsInView: 2
 }
 
 SliderArrows.propTypes = {
   arrowSize: PropTypes.string,
+  productsInView: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
