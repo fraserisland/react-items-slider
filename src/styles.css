@@ -1,72 +1,49 @@
 /* add css styles here (optional) */
 
 .snap {
-  display: block;
-  flex-basis: 200px !important;
+  flex-basis: 200px;
   scroll-snap-align: start;
-  color: pink;
   flex-grow: 0;
   flex-shrink: 0;
-  text-align: center;
 }
 
 .sliderArrowsContainer {
   position: relative;
-  padding: 4rem;
+  padding: 0 3.5rem;
+  display: flex;
 }
 
 .sliderArrowsChildren {
-  position: relative;
-  margin: 0 auto;
-  background-color: green;
   display: flex;
   overflow: auto;
-  width: 400px;
+  max-width: 100%;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
 }
 
 .sliderArrowsArrow {
-  position: absolute;
-  padding: 0;
   z-index: 999;
-  justify-content: center;
   align-content: center;
   cursor: pointer;
   transition: opacity 250ms;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.sliderArrowsArrowSmall {
-  width: 1.5rem;
-  height: 1.5rem;
   border: 0;
-}
-
-.sliderArrowsArrowMedium {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 0;
-}
-
-.sliderArrowsArrowLarge {
-  width: 3.5rem;
-  height: 3.5rem;
-  border: 0;
+  outline: none;
 }
 
 .sliderArrowsChildren::-webkit-scrollbar {
   display: none;
 }
 
-.sliderArrowsArrowLeft {
-  left: 0;
+.sliderArrowsArrowSmall {
+  width: 1.5rem;
 }
 
-.sliderArrowsArrowRight {
-  right: 0;
+.sliderArrowsArrowMedium {
+  width: 2.5rem;
+}
+
+.sliderArrowsArrowLarge {
+  width: 3.5rem;
 }
 
 .sliderArrowsActive {
