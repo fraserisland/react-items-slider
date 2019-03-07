@@ -63,7 +63,6 @@ const Example = () => (
         image="/img/pogostick.jpg"
       />
     </ReactItemSlider>
-
   </div>
 ) 
 
